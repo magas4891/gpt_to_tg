@@ -1,23 +1,12 @@
+# Exported from Render on 2024-09-12T19:19:36Z
 databases:
-  - name: 'dpg-crhjlod6l47c73deror0-a'
-    databaseName: 'gpt_to_tg_sh89'
-    user: 'gpt_to_tg_sh89_user'
+  - name: gpt-to-tg
+    databaseName: gpt_to_tg_sh89
+    user: gpt_to_tg_sh89_user
     plan: free
-
-services:
-  - type: web
-    name: 'dpg-crhjlod6l47c73deror0-a'
-    runtime: ruby
-    plan: free
-    buildCommand: "./bin/render-build.sh"
-    # preDeployCommand: "bundle exec rails db:migrate" # preDeployCommand only available on paid instance types
-    startCommand: "bundle exec rails server"
-    envVars:
-      - key: DATABASE_URL
-        fromDatabase:
-          name: 'dpg-crhjlod6l47c73deror0-a'
-          property: connectionString
-      - key: RAILS_MASTER_KEY
-        sync: false
-      - key: WEB_CONCURRENCY
-        value: 2 # sensible default
+    region: frankfurt
+    ipAllowList:
+      - source: 0.0.0.0/0
+        description: everywhere
+    postgresMajorVersion: "16"
+version: "1"
